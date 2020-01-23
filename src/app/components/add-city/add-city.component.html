@@ -1,0 +1,62 @@
+<div class="card text-center">
+    <div class="card-body">
+        <h5 class="card-title">Add New City </h5>
+        <p class="card-text">
+            <form [formGroup]="addCityForm" (ngSubmit)="addNewCity(addCityForm)">
+                <div class="form-group select-box">
+                    <label for="sel1">Select Continent:</label>
+                    <select class="form-control" formControlName="continent" id="sel1"
+                        (change)="onContinentChange($event.target.value)">
+                        <option selected value="null">Select Continent</option>
+                        <option *ngFor="let continent of continents" value="{{continent.id}}">{{continent.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group select-box">
+                    <label for="sel1">Select Country:</label>
+                    <select class="form-control" formControlName="country" id="sel1">
+                        <option selected value="null">Select Country</option>
+                        <option *ngFor=" let country of countries" value="{{country.id}}">{{country.name}}</option>
+                    </select>
+                </div>
+                <div class="form-group select-box">
+                    <label for="sel1">City Name:</label>
+                    <input type="text" class="form-control" formControlName="city" id="city"
+                        placeholder="Enter City Name">
+                </div>
+                <div class="form-group select-box">
+                    <label for="save">Click Here to Add</label>
+                    <button type="submit" id="save" class="btn btn-success form-control"
+                        [disabled]="!addCityForm.valid">Add City
+                        <span *ngIf="addCityloader" class="spinner-grow spinner-grow-sm" role="status"
+                            aria-hidden="true"></span> </button>
+                </div>
+            </form>
+    </div>
+    <!-- <img class="card-img-bottom" src="..." alt="Card image cap"> -->
+</div>
+
+
+<table class="table table-hover">
+    <thead class="thead-dark">
+
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">City</th>
+            <th scope="col">Country</th>
+            <th scope="col">Continent</th>
+        </tr>
+        <div class="spinner" *ngIf="!all_cities_data.length">
+
+        </div>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of all_cities_data; let i=index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{ data.city_name }}</td>
+            <td>{{ data.country_name }}</td>
+            <td>{{ data.continent_name }}</td>
+        </tr>
+
+    </tbody>
+</table>

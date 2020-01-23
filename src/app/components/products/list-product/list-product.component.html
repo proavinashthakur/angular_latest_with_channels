@@ -1,0 +1,90 @@
+<div class="container">
+  <br>
+  <h4>Products in Stock</h4>
+  <br>
+  <div class="row" id="ads">
+    <!-- Category Card -->
+    <div class="col-md-4" *ngFor="let product of products">
+      <div class="card rounded">
+        <div class="card-image">
+          <span class="card-notify-badge">{{ product.feature }}</span>
+          <span class="card-notify-year">{{ product.year }}</span>
+          <img class="img-fluid"
+            src="https://imageonthefly.autodatadirect.com/images/?USER=eDealer&PW=edealer872&IMG=USC80HOC011A021001.jpg&width=440&height=262"
+            alt="Alternate Text" />
+        </div>
+        <div class="card-image-overlay m-auto">
+          <span class="card-detail-badge">{{ product.usage_status }}</span>
+          <span class="card-detail-badge">&#8377;{{ product.price }}</span>
+          <span class="card-detail-badge">{{ product.kms_driven }} Kms</span>
+        </div>
+        <div class="card-body text-center">
+          <div class="ad-title m-auto">
+            <h5>{{ product.title }}</h5>
+          </div>
+          <button class="ad-btn" (click)="updateProductForm(product.id)">Modify Product</button>
+          <button class="ad-btn" (click)="deleteProduct(product.id)">Delete Product</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Update Product Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" *ngIf="addProductForm">
+          <form [formGroup]="addProductForm" (ngSubmit)="updateProduct(addProductForm)">
+            <!-- <div class="form-group">
+              <label for="title">PID</label>
+              <input type="text" class="form-control" formControlName="pid" id="pid" placeholder=" Enter product title"
+                required>
+            </div> -->
+            <div class="form-group">
+              <label for="title">Vehicle Title</label>
+              <input type="text" class="form-control" formControlName="title" id="title"
+                placeholder=" Enter product title" required>
+            </div>
+            <div class="form-group">
+              <label for="year">Year of build</label>
+              <input type="number" class="form-control" formControlName="year" id="year"
+                placeholder="Build year of vehicle" required>
+            </div>
+            <div class="form-group">
+              <label for="feature">Top Feature</label>
+              <input type="text" class="form-control" formControlName="feature" id="feature"
+                placeholder="Top feature of vehicle" required>
+            </div>
+            <div class="form-group">
+              <label for="usage_status">Vehicle Usage Status</label>
+              <input type="text" class="form-control" formControlName="usage_status" id="usage_status"
+                placeholder="Vehicle usage status" required>
+            </div>
+            <div class="form-group">
+              <label for="kms_driven">Kms Driven</label>
+              <input type="text" class="form-control" formControlName="kms_driven" id="kms_driven"
+                placeholder="kms driven by vehicle" required>
+            </div>
+            <div class="form-group">
+              <label for="price">Price</label>
+              <input type="number" class="form-control" formControlName="price" id="price"
+                placeholder="kms driven by vehicle" required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" [disabled]="!addProductForm.valid" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>

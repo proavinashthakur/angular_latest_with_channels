@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-header">
+        Add new Product
+    </div>
+    <div class="card-body">
+        <div class="add-pro-form">
+            <form [formGroup]="addProductForm" (ngSubmit)="addProduct(addProductForm)">
+                <div class="form-group">
+                    <label for="title">Vehicle Title</label>
+                    <input type="text" class="form-control" formControlName="title" id="title"
+                        aria-describedby="emailHelp" placeholder="Enter product title" required>
+                </div>
+                <div class="form-group">
+                    <label for="year">Year of build</label>
+                    <input type="number" class="form-control" formControlName="year" id="year"
+                        placeholder="Build year of vehicle" required>
+                </div>
+                <div class="form-group">
+                    <label for="feature">Top Feature</label>
+                    <input type="text" class="form-control" formControlName="feature" id="feature"
+                        placeholder="Top feature of vehicle" required>
+                </div>
+                <div class="form-group">
+                    <label for="usage_status">Vehicle Usage Status</label>
+                    <input type="text" class="form-control" formControlName="usage_status" id="usage_status"
+                        placeholder="Vehicle usage status" required>
+                </div>
+                <div class="form-group">
+                    <label for="kms_driven">Kms Driven</label>
+                    <input type="text" class="form-control" formControlName="kms_driven" id="kms_driven"
+                        placeholder="kms driven by vehicle" required>
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" formControlName="price" id="price"
+                        placeholder="Vehicle price" required>
+                </div>
+                <button type="submit" [disabled]="!addProductForm.valid" class="btn btn-primary">Add Product</button>
+            </form>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        You can change product details later also.
+    </div>
+</div>

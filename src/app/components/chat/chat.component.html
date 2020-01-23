@@ -1,0 +1,48 @@
+<div class="card text-center" *ngIf="!user_id">
+    <div class="card-body">
+        <h5 class="card-title">Login to start Chatting Now!!! </h5>
+        <p class="card-text">
+            <form [formGroup]="loginForm" (ngSubmit)="loginMe(loginForm)">
+                <div class="form-group select-box">
+                    <label for="phone">Phone:</label>
+                    <input type="text" class="form-control" formControlName="phone"
+                        placeholder="Enter registered phone number">
+                </div>
+                <div class="form-group select-box">
+                    <label for="password">Password:</label>
+                    <input type="text" class="form-control" formControlName="password" id="password"
+                        placeholder="Enter your password">
+                </div>
+                <div class="form-group select-box">
+                    <label for="save">Click Here to Login</label>
+                    <button type="submit" id="save" class="btn btn-success form-control"
+                        [disabled]="!loginForm.valid">Login</button>
+                </div>
+            </form>
+    </div>
+    <!-- <img class="card-img-bottom" src="..." alt="Card image cap"> -->
+</div>
+
+<h2>Messaging History</h2>
+<ul>
+    <li *ngFor="let msg of messages">{{ msg.message }}</li>
+</ul>
+<button class="open-button" (click)="openForm()">Chat</button>
+
+<div class="chat-popup" id="myForm">
+    <form action="/action_page.php" [formGroup]="msgForm" class="form-container" (ngSubmit)="sendMessage(msgForm)">
+        <h1>Chat</h1>
+        <div class="form-group select-box">
+            <label for="send_to">Chat To:</label>
+            <select formControlName="send_to" id="send_to">
+                <option selected value="null">Select User</option>
+                <option *ngFor="let user of users" value="{{user.id}}">{{user.name}}</option>
+            </select>
+        </div>
+        <label for="msg"><b>Message</b></label>
+        <textarea placeholder="Type message.." formControlName="msg" name="msg"></textarea>
+
+        <button type="submit" [disabled]="!msgForm.valid" class="btn">Send</button>
+        <button type="button" class="btn cancel" (click)="closeForm()">Close</button>
+    </form>
+</div>

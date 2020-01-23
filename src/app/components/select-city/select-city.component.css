@@ -1,0 +1,7 @@
+.select-box{
+    display: inline!important;
+    position: relative!important;
+    float: left;
+    width: 350px;
+    margin: 20px 20px 20px;
+}
